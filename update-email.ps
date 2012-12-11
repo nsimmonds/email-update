@@ -1,0 +1,10 @@
+<# Takes all users in an Exchange server and updates their 
+email addresses from firstname@domain.com to firstname.lastname@domain.com#>
+
+$users = Get-Mailbox
+foreach ($a in $users) {
+    $new="SMTP:"+$a.displayname.replace(" ",".")+"@domain.com"
+    $a.emailaddresses.add($new)
+    echo $a.emailaddresses
+ }
+$users | %{Set-Mailbox $_.Identity -EmailAddresses $_.EmailAddresses}
