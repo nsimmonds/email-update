@@ -1,5 +1,5 @@
 $users = Get_mailbox
 Foreach ($a in $users) {
-    $external = $a.alias+"@office.ctcfinc.com"
+    $external = $a.alias+"@newdomain.com"
     Set-mailbox -Identity $a.idenity -Forwardingsmtpaddress $external
 }
